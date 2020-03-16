@@ -23,6 +23,7 @@ class ProductsApp : Application(), HasAndroidInjector {
     open fun initDagger() {
         DaggerAppComponent
             .builder()
+            .application(this)
             .build()
             .inject(this)
     }

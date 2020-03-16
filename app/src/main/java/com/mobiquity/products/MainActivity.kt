@@ -15,11 +15,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.textview2.text = "OK !!!"
-        binding.button.setOnClickListener {
-            Toast.makeText(this,"Test",Toast.LENGTH_SHORT).show()
-        }
-
     }
 
 }
