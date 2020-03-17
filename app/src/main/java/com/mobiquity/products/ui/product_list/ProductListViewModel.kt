@@ -5,19 +5,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobiquity.products.data.ProductRepository
 import com.mobiquity.products.data.Result
-import com.mobiquity.products.data.model.ProductListResponse
-import com.mobiquity.products.data.model.ProductModel
+import com.mobiquity.products.data.model.CategoryModel
 import com.mobiquity.products.data.remote.ProductRemoteDataSource
 import com.mobiquity.products.network.NetworkDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 class ProductListViewModel @Inject constructor() : ViewModel(){
 
-    val productsLiveData = MutableLiveData<List<ProductModel>>()
+    val categoriesLiveData = MutableLiveData<List<CategoryModel>>()
 
     init {
         getProducts()
@@ -33,12 +30,7 @@ class ProductListViewModel @Inject constructor() : ViewModel(){
 
                 when(response){
                     is Result.Success ->{
-                        val list = ArrayList<ProductModel>()
-                        for(category in response.data){
-                            list.addAll(category.products)
-                        }
-
-                        productsLiveData.value = list
+                        categoriesLiveData.value = response.data
                     }
                 }
 

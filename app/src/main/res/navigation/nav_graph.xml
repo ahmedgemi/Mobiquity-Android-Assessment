@@ -9,5 +9,22 @@
         android:id="@+id/productListFragment"
         android:name="com.mobiquity.products.ui.product_list.ProductListFragment"
         android:label="fragment_product_list"
-        tools:layout="@layout/fragment_product_list" />
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/open_details"
+            app:destination="@id/productDetailsFragment">
+            <argument
+                android:name="model"
+                app:argType="com.mobiquity.products.data.model.ProductModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.mobiquity.products.ui.product_details.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details">
+
+    </fragment>
+
 </navigation>
