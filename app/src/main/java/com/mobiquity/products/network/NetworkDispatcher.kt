@@ -7,10 +7,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class NetworkDispatcher {
+class NetworkDispatcher @Inject constructor(){
 
     private val TIMEOUT_CONNECT = 30
     private val TIMEOUT_READ = 30

@@ -1,5 +1,6 @@
 package com.mobiquity.products.ui.product_list
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,29 +13,23 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
 
-class ProductListViewModel @Inject constructor() : ViewModel(){
+class ProductListViewModel @Inject constructor(
+    private val productRepository: ProductRepository) : ViewModel(){
 
-    val categoriesLiveData = MutableLiveData<List<CategoryModel>>()
+    private val categoriesLiveData = MutableLiveData<Result<List<CategoryModel>>>()
+
+    fun getCategoryLiveData(): LiveData<Result<List<CategoryModel>>>
+            = categoriesLiveData
 
     init {
         getProducts()
     }
 
     fun getProducts(){
-        val repo = ProductRepository(ProductRemoteDataSource(NetworkDispatcher()))
-
-
+        categoriesLiveData.value = Result.Loading
         viewModelScope.launch{
             try {
-                val response = repo.getProducts()
-
-                when(response){
-                    is Result.Success ->{
-                        categoriesLiveData.value = response.data
-                    }
-                }
-
-
+                categoriesLiveData.value = productRepository.getProducts()
             }
             catch (err: Exception){
                 print(err)

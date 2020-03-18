@@ -2,14 +2,13 @@ package com.mobiquity.products.di
 
 import android.app.Application
 import com.mobiquity.products.ProductsApp
-import com.mobiquity.products.di.component.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidInjectionModule::class,FragmentModule::class,ViewModelModule::class])
+@Component(modules = [AndroidInjectionModule::class,FragmentModule::class, ViewModelModule::class, AppModule::class])
 interface AppComponent {
 
     @Component.Builder

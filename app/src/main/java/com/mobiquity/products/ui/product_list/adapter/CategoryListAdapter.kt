@@ -12,8 +12,7 @@ import com.mobiquity.products.databinding.ItemCategoryBinding
 
 class CategoryListAdapter (
     private val context: Context?,
-    private val list: List<CategoryModel>,
-    private val onItemClick: ((ProductModel) -> Unit)
+    private val list: List<CategoryModel>
 ): RecyclerView.Adapter<CategoryListAdapter.CategoryItemHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryItemHolder {
@@ -28,7 +27,7 @@ class CategoryListAdapter (
     override fun onBindViewHolder(holder: CategoryItemHolder, position: Int) {
         val category = list[position]
 
-        val productAdapter = ProductListAdapter(category.products,onItemClick)
+        val productAdapter = ProductListAdapter(category.products)
         holder.binding.rvProducts.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         holder.binding.rvProducts.adapter = productAdapter
         holder.binding.tvCategory.text = category.name

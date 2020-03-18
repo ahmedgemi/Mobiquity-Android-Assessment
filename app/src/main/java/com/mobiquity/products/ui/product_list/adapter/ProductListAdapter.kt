@@ -1,16 +1,20 @@
 package com.mobiquity.products.ui.product_list.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mobiquity.products.R
 import com.mobiquity.products.data.model.ProductModel
 import com.mobiquity.products.databinding.ItemProductBinding
+import com.mobiquity.products.ui.product_list.ProductListFragmentDirections
 import com.squareup.picasso.Picasso
 
 class ProductListAdapter (
-    private val list: List<ProductModel>,
-    private val onItemClick: ((ProductModel) -> Unit)
+    private val list: List<ProductModel>
 ): RecyclerView.Adapter<ProductListAdapter.ProductItemHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductItemHolder {
@@ -30,15 +34,18 @@ class ProductListAdapter (
         holder.binding.tvCurrency.text = product.salePrice.currency
 
         holder.binding.root.setOnClickListener {
-            onItemClick(product)
+            val bundle = Bundle()
+            bundle.putParcelable("model",product)
+            val action = ProductListFragmentDirections.openDetails(product)
+
+            it.findNavController().navigate(action)
         }
 
         if(!product.url.isNullOrEmpty()) {
-
             Picasso.get()
                 .load("http://mobcategories.s3-website-eu-west-1.amazonaws.com${product.url}" )
                 .placeholder(R.drawable.placeholder)
-                .error(R.drawable.not_found)
+                .error(R.drawable.placeholder)
                 .into(holder.binding.ivProduct)
         }
 

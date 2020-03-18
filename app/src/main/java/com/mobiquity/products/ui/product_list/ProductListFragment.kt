@@ -1,12 +1,16 @@
 package com.mobiquity.products.ui.product_list
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobiquity.products.R
 import com.mobiquity.products.base.BaseFragment
+import com.mobiquity.products.data.Result
+import com.mobiquity.products.data.model.CategoryModel
 import com.mobiquity.products.databinding.FragmentProductListBinding
 import com.mobiquity.products.ui.ViewModelFactory
 import com.mobiquity.products.ui.product_details.ProductDetailsFragment
@@ -31,18 +35,42 @@ class ProductListFragment : BaseFragment<FragmentProductListBinding>() {
         viewModel = ViewModelProvider(this,viewModelFactory).get(ProductListViewModel::class.java)
 
 
-        viewModel.categoriesLiveData.observe(this, Observer { it ->
-            adapter = CategoryListAdapter(context,it,onItemClick = { product->
-
-                val bundle = Bundle()
-                bundle.putParcelable("model",product)
-                val action = ProductListFragmentDirections.openDetails(product)
-                //action.arguments.putParcelable("model",product)
-                findNavController().navigate(action)
-            })
-            binding.rvProducts.layoutManager = LinearLayoutManager(context)
-            binding.rvProducts.adapter = adapter
+        viewModel.getCategoryLiveData().observe(this, Observer { it ->
+            when(it){
+                is Result.Success-> {
+                    setCategoryList(it.data)
+                }
+                is Result.Loading-> {
+                    showProgress()
+                }
+                is Result.Error-> {
+                    showNetworkError()
+                }
+            }
         })
+    }
+
+    private fun showNetworkError(){
+        binding.layoutProgress.root.visibility = View.GONE
+        binding.layoutNetwordError.root.visibility = View.VISIBLE
+        binding.layoutNetwordError.btnTryAgain.setOnClickListener {
+            viewModel.getProducts()
+        }
+    }
+
+    private fun showProgress() {
+        binding.rvProducts.visibility = View.GONE
+        binding.layoutNetwordError.root.visibility = View.GONE
+        binding.layoutProgress.root.visibility = View.VISIBLE
+    }
+
+    private fun setCategoryList(list: List<CategoryModel>){
+        binding.layoutProgress.root.visibility = View.GONE
+        binding.layoutNetwordError.root.visibility = View.GONE
+        binding.rvProducts.visibility = View.VISIBLE
+        adapter = CategoryListAdapter(context,list)
+        binding.rvProducts.layoutManager = LinearLayoutManager(context)
+        binding.rvProducts.adapter = adapter
     }
 
 }

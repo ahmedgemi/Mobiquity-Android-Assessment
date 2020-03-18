@@ -1,4 +1,4 @@
-package com.mobiquity.products.di.component
+package com.mobiquity.products.di
 
 import androidx.lifecycle.ViewModel
 import com.mobiquity.products.di.ViewModelKey
