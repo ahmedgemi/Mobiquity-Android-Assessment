@@ -2,6 +2,7 @@ package com.mobiquity.products.ui.product_details
 
 import android.os.Bundle
 import androidx.transition.TransitionInflater
+import com.mobiquity.products.Constants
 import com.mobiquity.products.R
 import com.mobiquity.products.base.BaseFragment
 import com.mobiquity.products.data.model.ProductModel
@@ -21,7 +22,7 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding>() {
     }
     override fun onFragmentCreated() {
 
-        val product = arguments?.getParcelable<ProductModel>("model")
+        val product = arguments?.getParcelable<ProductModel>(Constants.PRODUCT_DATA)
 
         binding.tvName.text = product?.name
         binding.tvPrice.text = product?.salePrice?.amount
@@ -29,7 +30,7 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding>() {
 
         if(!product?.url.isNullOrEmpty()) {
             Picasso.get()
-                .load("http://mobcategories.s3-website-eu-west-1.amazonaws.com${product?.url}" )
+                .load("${Constants.BASE_URL}${product?.url}" )
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(binding.ivProduct)

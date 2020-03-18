@@ -1,8 +1,6 @@
-package com.mobiquity.products
+package com.mobiquity.products.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.mobiquity.products.base.BaseActivity
 import com.mobiquity.products.databinding.ActivityMainBinding
 

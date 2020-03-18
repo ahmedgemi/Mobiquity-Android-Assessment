@@ -7,10 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobiquity.products.data.ProductRepository
 import com.mobiquity.products.data.Result
 import com.mobiquity.products.data.model.CategoryModel
-import com.mobiquity.products.data.remote.ProductRemoteDataSource
-import com.mobiquity.products.network.NetworkDispatcher
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 class ProductListViewModel @Inject constructor(

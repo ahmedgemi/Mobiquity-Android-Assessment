@@ -1,7 +1,6 @@
 package com.mobiquity.products.di
 
 import androidx.lifecycle.ViewModel
-import com.mobiquity.products.di.ViewModelKey
 import com.mobiquity.products.ui.product_list.ProductListViewModel
 import dagger.Binds
 import dagger.Module

@@ -1,6 +1,5 @@
 package com.mobiquity.products
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.mobiquity.products.di.DaggerAppComponent

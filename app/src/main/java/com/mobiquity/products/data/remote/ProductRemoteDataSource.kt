@@ -1,9 +1,10 @@
 package com.mobiquity.products.data.remote
 
+import com.mobiquity.products.Constants
 import com.mobiquity.products.data.ProductDataSource
 import com.mobiquity.products.data.Result
-import com.mobiquity.products.data.model.CategoryModel
 import com.mobiquity.products.data.model.CategoryListResponse
+import com.mobiquity.products.data.model.CategoryModel
 import com.mobiquity.products.network.NetworkDispatcher
 import com.mobiquity.products.network.ProductApiService
 import retrofit2.Response
@@ -16,8 +17,7 @@ class ProductRemoteDataSource @Inject constructor(
     override suspend fun fetchCategories(): Result<List<CategoryModel>> {
 
        val newsService = networkDispatcher.createService(
-           ProductApiService::class.java,
-           "http://mobcategories.s3-website-eu-west-1.amazonaws.com")
+           ProductApiService::class.java, Constants.BASE_URL)
 
         val response = processCall(newsService::fetchProducts)
         return when (response) {

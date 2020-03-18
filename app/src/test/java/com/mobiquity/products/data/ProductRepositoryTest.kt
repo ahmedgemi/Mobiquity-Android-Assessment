@@ -4,14 +4,12 @@ import com.mobiquity.products.MockData
 import com.mobiquity.products.data.remote.ProductRemoteDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert.assertTrue
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.mockito.Mockito.`when`
+import org.mockito.MockitoAnnotations
 import java.io.IOException
 
 @ExperimentalCoroutinesApi

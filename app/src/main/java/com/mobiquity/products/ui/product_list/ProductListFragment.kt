@@ -1,21 +1,15 @@
 package com.mobiquity.products.ui.product_list
 
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mobiquity.products.R
 import com.mobiquity.products.base.BaseFragment
 import com.mobiquity.products.data.Result
 import com.mobiquity.products.data.model.CategoryModel
 import com.mobiquity.products.databinding.FragmentProductListBinding
 import com.mobiquity.products.ui.ViewModelFactory
-import com.mobiquity.products.ui.product_details.ProductDetailsFragment
 import com.mobiquity.products.ui.product_list.adapter.CategoryListAdapter
-import com.mobiquity.products.ui.product_list.adapter.ProductListAdapter
 import javax.inject.Inject
 
 

@@ -14,7 +14,7 @@
             android:id="@+id/open_details"
             app:destination="@id/productDetailsFragment">
             <argument
-                android:name="model"
+                android:name="product_data"
                 app:argType="com.mobiquity.products.data.model.ProductModel" />
         </action>
     </fragment>

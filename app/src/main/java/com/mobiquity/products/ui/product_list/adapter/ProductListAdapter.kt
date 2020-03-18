@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.mobiquity.products.Constants
 import com.mobiquity.products.R
 import com.mobiquity.products.data.model.ProductModel
 import com.mobiquity.products.databinding.ItemProductBinding
@@ -35,7 +34,7 @@ class ProductListAdapter (
 
         holder.binding.root.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelable("model",product)
+            bundle.putParcelable(Constants.PRODUCT_DATA,product)
             val action = ProductListFragmentDirections.openDetails(product)
 
             it.findNavController().navigate(action)
@@ -43,7 +42,7 @@ class ProductListAdapter (
 
         if(!product.url.isNullOrEmpty()) {
             Picasso.get()
-                .load("http://mobcategories.s3-website-eu-west-1.amazonaws.com${product.url}" )
+                .load("${Constants.BASE_URL}${product.url}" )
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(holder.binding.ivProduct)

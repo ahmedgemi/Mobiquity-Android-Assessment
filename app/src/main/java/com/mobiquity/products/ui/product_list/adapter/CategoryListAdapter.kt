@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobiquity.products.data.model.CategoryModel
-import com.mobiquity.products.data.model.ProductModel
 import com.mobiquity.products.databinding.ItemCategoryBinding
 
 
