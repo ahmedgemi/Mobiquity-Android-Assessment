@@ -2,6 +2,20 @@
 
 Mobiquity Android assignment for display products demo app
 
+
+<table>
+  <tr>
+    <td>Product List</td>
+     <td>On Network Error</td>
+     <td>Product Details</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/screen_1.jpg" width=250 height=520></td>
+    <td><img src="screenshots/screen_2.jpg" width=250 height=520></td>
+    <td><img src="screenshots/screen_3.jpg" width=250 height=520></td>
+  </tr>
+ </table>
+ 
 # Language
 - Kotlin
 
